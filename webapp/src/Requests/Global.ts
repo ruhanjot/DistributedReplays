@@ -34,3 +34,5 @@ export const getUploadStatuses = (ids: string[]): Promise<UploadStatus[]> => {
 }
 
 export const getLoggedInUser = (): Promise<LoggedInUser> => doGet("/me")
+
+export const getRecentReplays = (): Promise<any> => doGet("/global/recent")

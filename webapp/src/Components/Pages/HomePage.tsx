@@ -23,11 +23,12 @@ import {
     UPLOAD_LINK
 } from "../../Globals"
 import { LoggedInUserActions, StoreState } from "../../Redux"
-import { getLoggedInUser, getReplayCount } from "../../Requests/Global"
+import { getLoggedInUser, getRecentReplays, getReplayCount } from "../../Requests/Global"
 import { LinkButton } from "../Shared/LinkButton"
 import { Logo } from "../Shared/Logo/Logo"
 import { Search } from "../Shared/Search"
 import { UploadDialogWrapper } from "../Shared/Upload/UploadDialogWrapper"
+import { Replay } from "../../Models"
 
 type Props = ReturnType<typeof mapStateToProps>
     & ReturnType<typeof mapDispatchToProps>
@@ -36,6 +37,7 @@ type Props = ReturnType<typeof mapStateToProps>
 
 interface State {
     replayCount?: number
+    recent?: Replay[]
 }
 
 class HomePageComponent extends React.PureComponent<Props, State> {
@@ -50,6 +52,8 @@ class HomePageComponent extends React.PureComponent<Props, State> {
         getLoggedInUser()
             .then((loggedInUser) => this.props.setLoggedInUser(loggedInUser))
             .catch(() => undefined)
+        getRecentReplays()
+            .then((recent: any) => this.setState({recent}))
     }
 
     public render() {
@@ -104,6 +108,23 @@ class HomePageComponent extends React.PureComponent<Props, State> {
                             </Grid>
                             <Grid item xs={12} sm={8} md={8} lg={6} xl={4}>
                                 <HomePageFooter/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Divider/>
+                            </Grid>
+
+                            <Grid item container xs={12}>
+                                <Grid item container xs={6}>
+                                    {this.state.recent && this.state.recent.map((replay: Replay) => (
+                                        <>
+                                        <Grid item xs={12}>
+                                            {replay.map}
+
+                                        </Grid>
+
+                                        </>
+                                    ))}
+                                </Grid>
                             </Grid>
                         </Grid>
                     </div>
