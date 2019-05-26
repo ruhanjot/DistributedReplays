@@ -106,11 +106,12 @@ def api_get_replay_count(session=None):
     count = session.query(Game.hash).count()
     return jsonify(count)
 
+
 @bp.route('/global/recent')
 @with_session
 def api_get_recent_replays(session=None):
     games = session.query(Game)[-5:]
-    return better_jsonify([Replay.create_from_game(game) for game in games])
+    return better_jsonify([Replay.create_from_game(game) for game in games][::-1])
 
 
 @bp.route('/global/queue/count')

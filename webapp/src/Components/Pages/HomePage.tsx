@@ -1,6 +1,16 @@
 import { faDiscord, faGithub, faPatreon, faRedditAlien, faSteam, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { faChartBar } from "@fortawesome/free-solid-svg-icons"
-import { Button, createStyles, Divider, Grid, Typography, WithStyles, withStyles, withWidth } from "@material-ui/core"
+import {
+    Button,
+    createStyles,
+    Divider,
+    Grid,
+    Theme,
+    Typography,
+    WithStyles,
+    withStyles,
+    withWidth
+} from "@material-ui/core"
 import { GridProps } from "@material-ui/core/Grid"
 import { isWidthUp, WithWidth } from "@material-ui/core/withWidth"
 import CloudUpload from "@material-ui/icons/CloudUpload"
@@ -29,6 +39,7 @@ import { Logo } from "../Shared/Logo/Logo"
 import { Search } from "../Shared/Search"
 import { UploadDialogWrapper } from "../Shared/Upload/UploadDialogWrapper"
 import { Replay } from "../../Models"
+import { RecentReplays } from "../Shared/RecentReplays"
 
 type Props = ReturnType<typeof mapStateToProps>
     & ReturnType<typeof mapDispatchToProps>
@@ -60,6 +71,7 @@ class HomePageComponent extends React.PureComponent<Props, State> {
         const {classes, width, loggedInUser} = this.props
 
         const alignCenterProps: GridProps = {container: true, justify: "center", alignItems: "center"}
+
         return (
             <div className={classes.backgroundContainer}>
                 <UploadDialogWrapper buttonStyle="floating">
@@ -115,15 +127,7 @@ class HomePageComponent extends React.PureComponent<Props, State> {
 
                             <Grid item container xs={12}>
                                 <Grid item container xs={6}>
-                                    {this.state.recent && this.state.recent.map((replay: Replay) => (
-                                        <>
-                                        <Grid item xs={12}>
-                                            {replay.map}
-
-                                        </Grid>
-
-                                        </>
-                                    ))}
+                                    <RecentReplays recent={this.state.recent}/>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -215,7 +219,7 @@ const HomePageFooterComponent: React.SFC<WithWidth> = (props: WithWidth) => {
 
 const HomePageFooter = withWidth()(HomePageFooterComponent)
 
-const styles = createStyles({
+const styles = (theme: Theme) => createStyles({
     root: {
         margin: "auto",
         width: "100%",
@@ -234,7 +238,7 @@ const styles = createStyles({
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         backgroundImage: 'url("/splash.png")'
-    }
+    },
 })
 
 export const mapStateToProps = (state: StoreState) => ({

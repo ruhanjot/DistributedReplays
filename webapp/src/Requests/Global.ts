@@ -1,6 +1,7 @@
 import qs from "qs"
 import { doGet, doPost } from "../apiHandler/apiHandler"
 import { useMockData } from "./Config"
+import { parseReplay } from "../Models"
 
 export const getReplayCount = (): Promise<number> => {
     if (useMockData) {
@@ -35,4 +36,6 @@ export const getUploadStatuses = (ids: string[]): Promise<UploadStatus[]> => {
 
 export const getLoggedInUser = (): Promise<LoggedInUser> => doGet("/me")
 
-export const getRecentReplays = (): Promise<any> => doGet("/global/recent")
+export const getRecentReplays = (): Promise<any> => doGet("/global/recent").then((replays) => (
+    replays.map(parseReplay)
+))
