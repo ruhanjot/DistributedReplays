@@ -24,6 +24,7 @@ from backend.utils.checks import log_error
 from backend.utils.global_functions import get_current_user_id
 from backend.blueprints.spa_api.service_layers.replay.visualizations import Visualizations
 from backend.database.utils.file_manager import get_replay_path
+from backend.blueprints.spa_api.service_layers.player.bots import get_bots
 
 try:
     import config
@@ -490,3 +491,7 @@ def api_handle_error(error: CalculatedError):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code
     return response
+
+@bp.route('/rutiz')
+def api_get_queue_lengthh():
+    return better_jsonify(get_bots())

@@ -1,0 +1,18 @@
+Expecting value: line 1 column 1 (char 0)Traceback (most recent call last):
+  File "C:\Users\ruhan\Documents\Code\Python\DistributedReplays\backend\tasks\add_replay.py", line 73, in parse_replay
+    analysis_manager = analyze_replay_file(filename)  # type: ReplayGame
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\site-packages\carball\decompile_replays.py", line 42, in analyze_replay_file
+    _json = decompile_replay(replay_path, output_path=output_path, overwrite=overwrite)
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\site-packages\carball\decompile_replays.py", line 26, in decompile_replay
+    return run_rattletrap.decompile_replay(replay_path, output_path)
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\site-packages\carball\rattletrap\run_rattletrap.py", line 69, in decompile_replay
+    return run_rattletrap_command(command, output_path)
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\site-packages\carball\rattletrap\run_rattletrap.py", line 54, in run_rattletrap_command
+    _json = json.loads(output)
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\json\__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

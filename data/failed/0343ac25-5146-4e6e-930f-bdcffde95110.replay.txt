@@ -1,0 +1,12 @@
+b'rattletrap-6.3.1-windows.exe: don\'t know how to get attribute value Str {strValue = "TAGame.CameraSettingsActor_TA:bMouseCameraToggleEnabled"}'. Code: 1Traceback (most recent call last):
+  File "C:\Users\ruhan\Documents\Code\Python\DistributedReplays\backend\tasks\add_replay.py", line 73, in parse_replay
+    analysis_manager = analyze_replay_file(filename)  # type: ReplayGame
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\site-packages\carball\decompile_replays.py", line 42, in analyze_replay_file
+    _json = decompile_replay(replay_path, output_path=output_path, overwrite=overwrite, rattletrap_path=rattletrap_path)
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\site-packages\carball\decompile_replays.py", line 25, in decompile_replay
+    return run_rattletrap.decompile_replay(replay_path, output_path, overwrite, rattletrap_path)
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\site-packages\carball\rattletrap\run_rattletrap.py", line 84, in decompile_replay
+    return run_rattletrap_command(command, output_path)
+  File "c:\users\ruhan\appdata\local\programs\python\python36\lib\site-packages\carball\rattletrap\run_rattletrap.py", line 57, in run_rattletrap_command
+    raise RattleTrapException(err_msg)
+carball.rattletrap.run_rattletrap.RattleTrapException: b'rattletrap-6.3.1-windows.exe: don\'t know how to get attribute value Str {strValue = "TAGame.CameraSettingsActor_TA:bMouseCameraToggleEnabled"}'. Code: 1
